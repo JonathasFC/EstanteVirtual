@@ -1,0 +1,54 @@
+<%= form_with(model: livro, local: true) do |form| %>
+  <% if livro.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(livro.errors.count, "error") %> prohibited this livro from being saved:</h2>
+
+      <ul>
+      <% livro.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :titulo %>
+    <%= form.text_field :titulo, id: :livro_titulo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ano_publicacao %>
+    <%= form.text_field :ano_publicacao, id: :livro_ano_publicacao %>
+  </div>
+
+  <div class="field">
+    <%= form.label :edicao %>
+    <%= form.text_field :edicao, id: :livro_edicao %>
+  </div>
+
+  <div class="field">
+    <%= form.label :genero %>
+    <%= form.text_field :genero, id: :livro_genero %>
+  </div>
+
+  <div class="field">
+    <%= form.label :editora_id %>
+    <%= form.select :editora_id, options_for_select(Editora.all.map{|m|[m.nome, m.id]}, form.object.editoras_id) %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :autor_id %>
+    <%= form.select :autor_id, options_for_select(Autore.all.map{|m|[m.nome, m.id]}, form.object.autores_id) %>
+  </div>
+
+    <div>
+      <%= form.label :capa %>
+      <%= image_tag @livro.capa_url, class: 'capa'  if @livro.capa? %>
+      <%= form.file_field :capa, label: 'Capa' , input_html: {accept: ('application/jpg') } %>
+      <br/>
+    </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+<% end %>

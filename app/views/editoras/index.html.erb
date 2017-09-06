@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Editoras</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Telefone</th>
+      <th>Website</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @editoras.each do |editora| %>
+      <tr>
+        <td><%= editora.nome %></td>
+        <td><%= editora.email %></td>
+        <td><%= editora.telefone %></td>
+        <td><%= editora.website %></td>
+
+
+
+        <td>
+          <%= link_to ' ', edit_editora_path(editora),  class: "glyphicon glyphicon-pencil" %>
+          <%= link_to ' ', editora, method: :delete, data: { confirm: 'Are you sure?' } , class: "glyphicon glyphicon-trash" %>
+        </td>
+      
+
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nova editora', new_editora_path %>

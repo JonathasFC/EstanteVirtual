@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Autores</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Data nasc</th>
+      <th>Pais origem</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @autores.each do |autore| %>
+      <tr>
+        <td><%= autore.nome %></td>
+        <td><%= autore.data_nasc %></td>
+        <td><%= autore.pais_origem %></td>
+
+
+        <td>
+          <%= link_to ' ', edit_autor_path(autore),  class: "glyphicon glyphicon-pencil" %>
+          <%= link_to ' ', autore, method: :delete, data: { confirm: 'Are you sure?' } , class: "glyphicon glyphicon-trash" %>
+        </td>
+
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Novo autor', new_autor_path %>
