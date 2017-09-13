@@ -10,7 +10,7 @@ class LivrosReport < Prawn::Document
 
   def header
     #This inserts an image in the pdf file and sets the size of the image
-    image "#{Rails.root}/app/assets/images/header.png", width: 50, height: 50
+    image "#{Rails.root}/app/assets/images/estante_virtual.png", width: 100, height: 50
   end
 
   def text_content
