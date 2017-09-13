@@ -12,9 +12,12 @@
 
 ActiveRecord::Schema.define(version: 20170906224906) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "autores", force: :cascade do |t|
     t.string "nome"
-    t.date "data_nasc"
+    t.string "data_nasc"
     t.string "pais_origem"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -37,8 +40,8 @@ ActiveRecord::Schema.define(version: 20170906224906) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "capa"
-    t.integer "editoras_id"
-    t.integer "autores_id"
+    t.bigint "editoras_id"
+    t.bigint "autores_id"
     t.index ["autores_id"], name: "index_livros_on_autores_id"
     t.index ["editoras_id"], name: "index_livros_on_editoras_id"
   end
@@ -60,4 +63,6 @@ ActiveRecord::Schema.define(version: 20170906224906) do
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "livros", "autores", column: "autores_id"
+  add_foreign_key "livros", "editoras", column: "editoras_id"
 end
